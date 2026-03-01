@@ -1,0 +1,12 @@
+<h2>Task Details</h2>
+
+<ng-container *ngIf="task; else noTask">
+  <p><strong>Title:</strong> {{ task.title }}</p>
+  <p><strong>Description:</strong> {{ task.description || 'N/A' }}</p>
+  <p><strong>Due Date:</strong> {{ task.dueDate | date:'mediumDate' }}</p>
+  <p><strong>Completed:</strong> {{ task.completed ? 'Yes' : 'No' }}</p>
+</ng-container>
+
+<ng-template #noTask>
+  <p>Task not found.</p>
+</ng-template>

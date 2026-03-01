@@ -1,0 +1,15 @@
+<h3>{{ task.id ? 'Edit Task' : 'Add Task' }}</h3>
+
+<form (ngSubmit)="submit()">
+  <input [(ngModel)]="task.title" name="title" placeholder="Title" required>
+  <input [(ngModel)]="task.description" name="description" placeholder="Description">
+  <input [(ngModel)]="task.dueDate" name="dueDate" type="date">
+  
+  <label>
+    Completed:
+    <input type="checkbox" [(ngModel)]="task.completed" name="completed">
+  </label>
+
+  <button type="submit">Save</button>
+  <button type="button" (click)="onCancel()">Cancel</button>
+</form>

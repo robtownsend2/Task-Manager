@@ -1,0 +1,32 @@
+<h2>Task List</h2>
+
+<button (click)="openNewTaskForm()">Add New Task</button>
+
+<ng-container *ngIf="tasks$ | async as tasks; else noTasks">
+  <ul *ngIf="tasks.length > 0">
+    <li *ngFor="let task of tasks">
+      <strong>{{ task.title }}</strong><br>
+      Due: {{ task.dueDate | date:'mediumDate' }}<br>
+      Completed: {{ task.completed ? 'Yes' : 'No' }}<br>
+
+      <button (click)="editTask(task)">Edit</button>
+      <button (click)="deleteTask(task.id)">Delete</button>
+      
+       
+      <button [routerLink]="['/tasks', task.id]">View</button>
+
+      <hr>
+    </li>
+  </ul>
+</ng-container>
+
+<ng-template #noTasks>
+  <p>No tasks yet.</p>
+</ng-template>
+
+<app-task-form
+  *ngIf="showForm"
+  [task]="selectedTask"
+  (save)="onSave()"
+  (cancel)="closeForm()">
+</app-task-form>
